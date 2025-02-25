@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compilatore di Moduli</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+        .btn {
+            width: 200px;
+            margin: 10px;
+            font-size: 20px;
+        }
+        .supporto {
+            position: absolute;
+            bottom: 10px;
+            font-size: 16px;
+            color: gray;
+        }
+        .logo {
+            max-width: 10%; /* Riduce la dimensione dell'immagine */
+            height: auto;
+            position: absolute;
+            top: 20px; /* Posiziona l'immagine in alto */
+        }
+        .content {
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .admin-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px; /* Aumenta lo spazio rispetto ai bottoni principali */
+            margin-bottom: 50px; /* Distanza dal supporto */
+        }
+
+        .admin-btn {
+            width: 200px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        if (localStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'index.html';
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const role = localStorage.getItem('role');
+            if (role === 'Admin') {
+                const adminContainer = document.createElement('div');
+                adminContainer.classList.add('admin-container');
+    
+                const adminButton = document.createElement('a');
+                adminButton.href = 'admin_dashboard.html';
+                adminButton.classList.add('btn', 'btn-dark', 'admin-btn');
+                adminButton.textContent = '⚙️ Admin Dashboard';
+    
+                adminContainer.appendChild(adminButton);
+    
+                // Inserisce il bottone prima del supporto
+                const supportDiv = document.querySelector('.supporto');
+                supportDiv.parentNode.insertBefore(adminContainer, supportDiv);
+            }
+        });
+    </script>
+    <img src="images/2025-02-04_22.44.27-removebg-preview.png" alt="logo smd" class="logo">
+    <div class="container text-center content">
+        <h1>Seleziona un modulo</h1>
+        <div class="mt-4">
+            <a href="arresto.html" class="btn btn-danger">🚔 Arresto</a>
+            <a href="sequestro.html" class="btn btn-warning">📦 Sequestro</a>
+            <a href="multa.html" class="btn btn-primary">💰 Multa</a>
+            <a href="servizio.html" class="btn btn-success">🕰️ Servizio</a>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <a href="richieste.html" class="btn btn-success">📋 Richieste</a>
+        </div>
+    </div>
+    <div class="supporto">Per supporto @laapuissancee 📲</div>
+</body>
+</html>
